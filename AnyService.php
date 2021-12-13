@@ -11,8 +11,11 @@ final class AnyService
     {
         $result = $this->entityRepository->findOneByIdField(123);
 
-        if (!$result instanceof Entity) {
-            throw new RuntimeException('An error has occurred, the entity has not been found!');
+        try {
+            if (!$result instanceof Entity) {
+                throw new RuntimeException('An error has occurred, the entity has not been found!');
+            }
+        } catch (Throwable $exception) {
         }
 
         return $result;
