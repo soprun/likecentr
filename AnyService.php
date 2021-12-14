@@ -7,17 +7,19 @@ final class AnyService
     {
     }
 
-    public function execute()
+    public function execute(/** Какой паттерн нужно использовать для передачи данных */)
     {
-        $result = $this->entityRepository->findOneByIdField(123);
+        $entity = $this->entityRepository->findOneByIdField(123);
 
-        try {
-            if (!$result instanceof Entity) {
-                throw new RuntimeException('An error has occurred, the entity has not been found!');
-            }
-        } catch (Throwable $exception) {
+        if (!$entity instanceof Entity) {
+            throw new RuntimeException('An error has occurred, the entity has not been found!');
         }
 
-        return $result;
+        // Вызывает `throw new DomainException`
+        if ($entity->getId() === 10) {
+            $entity->getException();
+        }
+
+        return $entity;
     }
 }
