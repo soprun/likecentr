@@ -9,6 +9,7 @@ final class AnyService
 
     public function execute(/** Какой паттерн нужно использовать для передачи данных */)
     {
+        /** Какой паттерн нужно использовать для явной передачи бизнес правил в хранилище */
         $entity = $this->entityRepository->findOneByIdField(123);
 
         if (!$entity instanceof Entity) {
